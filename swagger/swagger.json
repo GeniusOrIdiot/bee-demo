@@ -1,0 +1,98 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "beego Test API",
+        "description": "beego has a very cool tools to autogenerate documents for your API",
+        "version": "1.0.0",
+        "termsOfService": "http://beego.me/",
+        "contact": {
+            "email": "astaxie@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/v1",
+    "paths": {
+        "/user/add": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Register a user.",
+                "operationId": "UserController.Add user",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for user content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{int} models.User.Id"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/user/get/{id}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Logs out current logged in user session",
+                "operationId": "UserController.get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "User id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.User": {
+            "title": "User",
+            "type": "object",
+            "properties": {
+                "Age": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Name": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "user",
+            "description": "CMS API\n"
+        }
+    ]
+}
